@@ -10,8 +10,13 @@ spring:
     password: #비밀번호
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
     show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      schema-locations: classpath:sql/data.sql
+      mode: always
