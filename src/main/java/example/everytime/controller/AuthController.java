@@ -26,9 +26,9 @@ public class AuthController {
   }
 
   @GetMapping("/sign-up/validation")
-  public ResponseEntity<Long> validateId(@RequestParam String username) {
+  public ResponseEntity<ApiResponse> validateId(@RequestParam String username) {
     memberService.validateUsername(username);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.ok(new ApiResponse(true));
   }
 
   @PostMapping("/sign-in")
