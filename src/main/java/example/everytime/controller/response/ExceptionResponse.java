@@ -5,12 +5,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
-public class MemberIdResponse extends ApiResponse {
+public class ExceptionResponse extends ApiResponse {
 
-  private Long memberId;
+  private String message;
 
-  public MemberIdResponse(Long memberId, boolean isSuccessful) {
+  public ExceptionResponse(boolean isSuccessful, String message) {
     super(isSuccessful);
-    this.memberId = memberId;
+    this.message = message;
   }
 }

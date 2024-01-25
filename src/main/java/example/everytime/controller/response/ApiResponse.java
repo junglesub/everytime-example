@@ -1,9 +1,10 @@
 package example.everytime.controller.response;
 
-import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class ApiResponse {
   public boolean isSuccessful;
 
