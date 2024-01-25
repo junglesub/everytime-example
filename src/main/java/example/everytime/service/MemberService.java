@@ -4,6 +4,7 @@ import example.everytime.domain.College;
 import example.everytime.domain.Member;
 import example.everytime.dto.MemberDto;
 import example.everytime.exception.MemberNotFoundException;
+import example.everytime.exception.UsernameAlreadyExistsException;
 import example.everytime.repository.CollegeRepository;
 import example.everytime.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,5 +37,14 @@ public class MemberService {
             .findMemberByIdWithCollege(memberId)
             .orElseThrow(MemberNotFoundException::new);
     return MemberDto.from(member);
+  }
+
+  public void validateUsername(String username) {
+    memberRepository
+        .findByUsername(username)
+        .ifPresent(
+            (__) -> {
+              throw new UsernameAlreadyExistsException();
+            });
   }
 }
