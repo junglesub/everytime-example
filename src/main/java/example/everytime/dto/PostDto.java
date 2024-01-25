@@ -2,6 +2,7 @@ package example.everytime.dto;
 
 import example.everytime.controller.form.PostForm;
 import example.everytime.domain.Post;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,18 +15,13 @@ import lombok.NoArgsConstructor;
 public class PostDto {
 
   private Long postId;
-
   private Long memberId;
-
   private String title;
-
   private String content;
-
   private boolean isAnonymous;
-
   private int likeCount;
-
   private String nickname;
+  private LocalDateTime createdDate;
 
   public static PostDto from(Post post) {
     return PostDto.builder()
@@ -36,6 +32,7 @@ public class PostDto {
         .isAnonymous(post.getIsAnonymous())
         .likeCount(post.getLikeCount())
         .nickname(post.getMember().getNickname())
+        .createdDate(post.getCreatedDate())
         .build();
   }
 
