@@ -3,7 +3,7 @@ package example.everytime.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class Board {
+public class Board extends BaseTime {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

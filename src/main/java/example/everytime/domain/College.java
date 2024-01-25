@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class College {
+public class College extends BaseTime {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
