@@ -28,9 +28,11 @@ public class PostController {
   }
 
   @GetMapping
-  public ResponseEntity<ApiResponse> getAllPosts() {
-    List<PostDto> postsDto = postService.getAllPosts();
-    ApiResponse response = new PostListResponse(postsDto);
+  public ResponseEntity<ApiResponse> getAllPosts(
+      @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+    long count = postService.countAllPosts();
+    List<PostDto> postsDto = postService.getAllPosts(page, size);
+    ApiResponse response = new PostListResponse(postsDto, count);
     return ResponseEntity.ok(response);
   }
 

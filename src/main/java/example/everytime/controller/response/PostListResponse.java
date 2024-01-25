@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 public class PostListResponse extends ApiResponse {
 
   private List<PostDto> posts;
-  private int count;
+  private long count;
 
-  public PostListResponse(List<PostDto> postDto) {
+  public PostListResponse(List<PostDto> postDto, long count) {
     this.posts = postDto;
-    this.count = postDto.size();
+    this.count = count;
   }
 }
