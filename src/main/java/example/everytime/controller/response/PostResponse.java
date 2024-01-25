@@ -11,11 +11,16 @@ public class PostResponse extends ApiResponse {
   private Long postId;
   private String title;
   private String content;
-  private String username;
+  private String nickname;
   private Boolean isAnonymous;
   private int likeCount;
 
-  public PostResponse(boolean isSuccessful, PostDto post) {
-    super(isSuccessful);
+  public PostResponse(PostDto post) {
+    this.postId = post.getPostId();
+    this.title = post.getTitle();
+    this.content = post.getContent();
+    this.nickname = post.getNickname();
+    this.isAnonymous = post.isAnonymous();
+    this.likeCount = post.getLikeCount();
   }
 }

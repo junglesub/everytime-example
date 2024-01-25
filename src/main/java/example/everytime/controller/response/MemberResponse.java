@@ -13,8 +13,7 @@ public class MemberResponse extends ApiResponse {
   private String nickname;
   private String collegeName;
 
-  public MemberResponse(boolean isSuccessful, MemberDto memberDto) {
-    super(isSuccessful);
+  public MemberResponse(MemberDto memberDto) {
     this.username = memberDto.getUsername();
     this.nickname = memberDto.getNickname();
     this.collegeName = memberDto.getCollegeName();

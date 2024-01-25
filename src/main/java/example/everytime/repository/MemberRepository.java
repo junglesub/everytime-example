@@ -13,7 +13,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   Optional<Member> findMemberByUsernameAndPassword(String username, String password);
 
   @Query("select m from Member m join fetch m.college where m.memberId = :memberId")
-  Optional<Member> findMemberByIdWithCollege(Long memberId);
+  Optional<Member> findByIdWIthCollege(Long memberId);
 
   Optional<Member> findByUsername(String username);
 }

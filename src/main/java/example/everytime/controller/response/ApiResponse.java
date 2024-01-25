@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class ApiResponse {
-  private Boolean isSuccessful;
+  private Boolean isSuccessful = true;
 
   public ApiResponse(boolean isSuccessful) {
     this.isSuccessful = isSuccessful;

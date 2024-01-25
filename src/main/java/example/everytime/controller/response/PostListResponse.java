@@ -12,9 +12,8 @@ public class PostListResponse extends ApiResponse {
   private List<PostDto> posts;
   private int count;
 
-  public PostListResponse(boolean isSuccessful, List<PostDto> postsDto) {
-    super(isSuccessful);
-    this.posts = postsDto;
-    this.count = postsDto.size();
+  public PostListResponse(List<PostDto> postDto) {
+    this.posts = postDto;
+    this.count = postDto.size();
   }
 }

@@ -21,7 +21,7 @@ public class AuthController {
   @PostMapping("/sign-up")
   public ResponseEntity<ApiResponse> signUp(@RequestBody SignUpForm form) {
     Long memberId = memberService.addMember(MemberDto.from(form));
-    ApiResponse response = new MemberIdResponse(memberId, true);
+    ApiResponse response = new MemberIdResponse(memberId);
     return ResponseEntity.ok(response);
   }
 
@@ -34,7 +34,7 @@ public class AuthController {
   @PostMapping("/sign-in")
   public ResponseEntity<ApiResponse> signIn(@RequestBody SignInForm form) {
     Long memberId = memberService.signInMember(MemberDto.from(form));
-    ApiResponse response = new MemberIdResponse(memberId, true);
+    ApiResponse response = new MemberIdResponse(memberId);
     return ResponseEntity.ok(response);
   }
 

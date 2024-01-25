@@ -1,5 +1,6 @@
 package example.everytime.controller.response;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,10 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class ExceptionResponse extends ApiResponse {
 
+  private String error;
   private String message;
 
-  public ExceptionResponse(boolean isSuccessful, String message) {
+  @Builder
+  public ExceptionResponse(boolean isSuccessful, String error, String message) {
     super(isSuccessful);
+    this.error = error;
     this.message = message;
   }
 }

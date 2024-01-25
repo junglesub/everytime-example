@@ -19,7 +19,7 @@ public class MemberController {
   @GetMapping("/profile/{memberId}")
   public ResponseEntity<ApiResponse> getProfile(@PathVariable Long memberId) {
     MemberDto memberDto = memberService.getProfileOf(memberId);
-    ApiResponse response = new MemberResponse(true, memberDto);
+    ApiResponse response = new MemberResponse(memberDto);
     return ResponseEntity.ok(response);
   }
 }

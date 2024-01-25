@@ -32,9 +32,10 @@ public class MemberService {
   }
 
   public MemberDto getProfileOf(Long memberId) {
+    System.out.println("memberId = " + memberId);
     Member member =
         memberRepository
-            .findMemberByIdWithCollege(memberId)
+            .findByIdWIthCollege(memberId)
             .orElseThrow(MemberNotFoundException::new);
     return MemberDto.from(member);
   }

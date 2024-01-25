@@ -14,7 +14,12 @@ public class ExceptionController {
   @ExceptionHandler(UsernameAlreadyExistsException.class)
   public ResponseEntity<ApiResponse> handleUsernameAlreadyExistsException(
       UsernameAlreadyExistsException e) {
-    ApiResponse response = new ExceptionResponse(false, e.getMessage());
+    ApiResponse response =
+        ExceptionResponse.builder()
+            .isSuccessful(false)
+            .error(HttpStatus.CONFLICT.getReasonPhrase())
+            .message(e.getMessage())
+            .build();
     return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
   }
 }
