@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MemberResponse extends ApiResponse {
 
-  private Long memberId;
+  private String username;
   private String nickname;
   private String collegeName;
 
   public MemberResponse(boolean isSuccessful, MemberDto memberDto) {
     super(isSuccessful);
-    this.memberId = memberDto.getMemberId();
+    this.username = memberDto.getUsername();
     this.nickname = memberDto.getNickname();
     this.collegeName = memberDto.getCollegeName();
   }
