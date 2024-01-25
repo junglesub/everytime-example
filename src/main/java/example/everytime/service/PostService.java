@@ -9,6 +9,8 @@ import example.everytime.repository.MemberRepository;
 import example.everytime.repository.PostRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,8 +27,9 @@ public class PostService {
     return post.getPostId();
   }
 
-  public List<PostDto> getAllPosts() {
-    List<Post> posts = postRepository.findAllWithMember();
+  public List<PostDto> getAllPosts(int pageNumber, int pageSize) {
+    Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+    List<Post> posts = postRepository.findAllWithMember(pageable);
     return posts.stream().map(PostDto::from).toList();
   }
 
@@ -37,5 +40,9 @@ public class PostService {
 
   public void deletePost(Long postId) {
     postRepository.deleteById(postId);
+  }
+
+  public long countAllPosts() {
+    return postRepository.count();
   }
 }
