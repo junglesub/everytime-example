@@ -1,0 +1,50 @@
+package example.everytime.dto;
+
+import example.everytime.controller.form.PostForm;
+import example.everytime.domain.Post;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class PostDto {
+
+  private Long postId;
+
+  private Long memberId;
+
+  private String title;
+
+  private String content;
+
+  private boolean isAnonymous;
+
+  private int likeCount;
+
+  private String nickname;
+
+  public static PostDto from(Post post) {
+    return PostDto.builder()
+        .postId(post.getPostId())
+        .memberId(post.getMember().getMemberId())
+        .title(post.getTitle())
+        .content(post.getContent())
+        .isAnonymous(post.getIsAnonymous())
+        .likeCount(post.getLikeCount())
+        .nickname(post.getMember().getNickname())
+        .build();
+  }
+
+  public static PostDto from(PostForm postForm) {
+    return PostDto.builder()
+        .memberId(postForm.getMemberId())
+        .title(postForm.getTitle())
+        .content(postForm.getContent())
+        .isAnonymous(postForm.getIsAnonymous())
+        .build();
+  }
+}

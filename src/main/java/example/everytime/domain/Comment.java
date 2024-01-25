@@ -1,8 +1,10 @@
 package example.everytime.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class Comment {
 
   @Id

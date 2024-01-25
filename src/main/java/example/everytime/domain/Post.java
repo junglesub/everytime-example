@@ -1,8 +1,14 @@
 package example.everytime.domain;
 
+import example.everytime.dto.PostDto;
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Getter
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Post {
 
   @Id
@@ -11,8 +17,7 @@ public class Post {
 
   private String title;
   private String content;
-  private boolean isQuestion;
-  private boolean isAnonymous;
+  private Boolean isAnonymous;
   private int likeCount;
 
   @ManyToOne(fetch = FetchType.LAZY)
@@ -22,4 +27,13 @@ public class Post {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "board_id")
   private Board board;
+
+  public static Post toPost(PostDto postDto, Member member) {
+    return Post.builder()
+        .title(postDto.getTitle())
+        .content(postDto.getContent())
+        .isAnonymous(postDto.isAnonymous())
+        .member(member)
+        .build();
+  }
 }
