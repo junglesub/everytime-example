@@ -6,14 +6,14 @@ import example.everytime.controller.response.ApiResponse;
 import example.everytime.controller.response.MemberIdResponse;
 import example.everytime.dto.MemberDto;
 import example.everytime.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/apis/auth")
 @RequiredArgsConstructor
-@CrossOrigin
 public class AuthController {
 
   private final MemberService memberService;
@@ -32,14 +32,16 @@ public class AuthController {
   }
 
   @PostMapping("/sign-in")
-  public ResponseEntity<ApiResponse> signIn(@RequestBody SignInForm form) {
+  public ResponseEntity<ApiResponse> signIn(@RequestBody SignInForm form, HttpSession session) {
     Long memberId = memberService.signInMember(MemberDto.from(form));
+    session.setAttribute("memberId", memberId);
     ApiResponse response = new MemberIdResponse(memberId);
     return ResponseEntity.ok(response);
   }
 
   @GetMapping("/sign-out")
-  public ResponseEntity<ApiResponse> signOut() {
+  public ResponseEntity<ApiResponse> signOut(HttpSession session) {
+    session.invalidate();
     return ResponseEntity.ok(new ApiResponse(true));
   }
 }

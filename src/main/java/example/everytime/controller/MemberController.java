@@ -9,15 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/members")
+@RequestMapping("/apis/members")
 @RequiredArgsConstructor
-@CrossOrigin
 public class MemberController {
 
   private final MemberService memberService;
 
-  @GetMapping("/profile/{memberId}")
-  public ResponseEntity<ApiResponse> getProfile(@PathVariable Long memberId) {
+  @GetMapping("/profile/my")
+  public ResponseEntity<ApiResponse> getProfile(@SessionAttribute Long memberId) {
     MemberDto memberDto = memberService.getProfileOf(memberId);
     ApiResponse response = new MemberResponse(memberDto);
     return ResponseEntity.ok(response);
