@@ -36,9 +36,9 @@ public class PostDto {
         .build();
   }
 
-  public static PostDto from(PostForm postForm) {
+  public static PostDto from(Long memberId, PostForm postForm) {
     return PostDto.builder()
-        .memberId(postForm.getMemberId())
+        .memberId(memberId)
         .title(postForm.getTitle())
         .content(postForm.getContent())
         .isAnonymous(postForm.getIsAnonymous())

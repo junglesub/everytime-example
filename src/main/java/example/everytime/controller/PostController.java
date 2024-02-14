@@ -20,8 +20,9 @@ public class PostController {
   private final PostService postService;
 
   @PostMapping
-  public ResponseEntity<ApiResponse> addPost(@RequestBody PostForm form) {
-    Long postId = postService.addPost(PostDto.from(form));
+  public ResponseEntity<ApiResponse> addPost(
+      @SessionAttribute Long memberId, @RequestBody PostForm form) {
+    Long postId = postService.addPost(PostDto.from(memberId, form));
     ApiResponse response = new PostIdResponse(postId);
     return ResponseEntity.ok(response);
   }
